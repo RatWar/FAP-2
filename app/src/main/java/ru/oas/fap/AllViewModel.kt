@@ -25,9 +25,9 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
     var mAllCodes: LiveData<List<CodesData>>
     var mAllScans: LiveData<List<CountData>>
     val mAllDocs: LiveData<List<DocumentData>>
-    var mAllCodesInvent: LiveData<List<CodesData>>
+    private var mAllCodesInvent: LiveData<List<CodesData>>
     var mAllScansInvent: LiveData<List<CountData>>
-    val mAllDocsInvent: LiveData<List<DocumentData>>
+    private val mAllDocsInvent: LiveData<List<DocumentData>>
 
     init {
         val scansDao = TSDDatabase.getDatabase(application).scanDataDao()
@@ -57,10 +57,6 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteSGTIN(numDoc: Int, sgtin: String) = viewModelScope.launch(Dispatchers.IO) {
         mScanRepository.deleteSGTIN(numDoc, sgtin)
-    }
-
-    fun deleteCodes(sgtin: String) = viewModelScope.launch(Dispatchers.IO) {
-        mScanRepository.deleteCodes(sgtin)
     }
 
     fun deleteDoc(numDoc: Int) = viewModelScope.launch(Dispatchers.IO) {
@@ -97,10 +93,6 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // mNomenRepository
-    fun insertNomen(nomenData: NomenData) = viewModelScope.launch(Dispatchers.IO) {
-        mNomenRepository.insert(nomenData)
-    }
-
     fun insertNomenBlocking(nomenData: NomenData) {
         runBlocking { mNomenRepository.insert(nomenData) }
     }
@@ -146,27 +138,8 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
         mInventRepository.deleteBarcodeId(id)
     }
 
-    fun deleteSGTINInvent(numDoc: Int, sgtin: String) = viewModelScope.launch(Dispatchers.IO) {
-        mInventRepository.deleteSGTIN(numDoc, sgtin)
-    }
-
-    fun deleteCodesInvent(sgtin: String) = viewModelScope.launch(Dispatchers.IO) {
-        mInventRepository.deleteCodes(sgtin)
-    }
-
     fun deleteDocInvent(numDoc: Int) = viewModelScope.launch(Dispatchers.IO) {
         mInventRepository.deleteDoc(numDoc)
-    }
-
-    fun getNumberDocumentInvent(): Int {
-        var res: Int
-        runBlocking { res = mInventRepository.getNumberDocument() }
-        return res
-    }
-
-    fun setNumDocAndBarcodeInvent(numDoc: Int, barcode: String){
-        mInventRepository.mNumDoc = numDoc
-        mAllCodesInvent = mInventRepository.getCodes(numDoc, barcode)
     }
 
     fun setNumDocInvent(numDoc: Int){
@@ -188,10 +161,6 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // mRemainsRepository
-    fun insertRemains(remainsData: RemainsData) = viewModelScope.launch(Dispatchers.IO) {
-        mRemainsRepository.insert(remainsData)
-    }
-
     fun insertRemainsBlocking(remainsData: RemainsData) {
         runBlocking { mRemainsRepository.insert(remainsData) }
     }
@@ -199,12 +168,6 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
     fun getRemainsByCode(barcode: String): RemainsData? {
         var res: RemainsData?
         runBlocking {res = mRemainsRepository.getRemainsByCode(barcode) }
-        return res
-    }
-
-    fun countRemains(): Int {
-        var res: Int
-        runBlocking { res = mRemainsRepository.countRemains() }
         return res
     }
 
@@ -224,10 +187,6 @@ class AllViewModel(application: Application) : AndroidViewModel(application) {
         var res: String
         runBlocking { res = mRemainsRepository.nameFileRemains() }
         return res
-    }
-
-    fun updateAvailableRemains(id: Long, available: Int) = viewModelScope.launch(Dispatchers.IO) {
-        mRemainsRepository.updateAvailable(id, available)
     }
 
     fun delRemains() {

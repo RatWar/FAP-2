@@ -31,21 +31,6 @@ class InventRepository(private val inventDataDao: InventDataDao) {
     }
 
     @WorkerThread
-    suspend fun deleteSGTIN(numDoc: Int, sgtin: String) {
-        inventDataDao.delSGTIN(numDoc, sgtin)
-    }
-
-    @WorkerThread
-    suspend fun deleteCodes(sgtin: String) {
-        inventDataDao.delCodes(sgtin)
-    }
-
-    @WorkerThread
-    suspend fun getNumberDocument(): Int {
-        return inventDataDao.getNumberDocument()
-    }
-
-    @WorkerThread
     suspend fun deleteDoc(numDoc: Int) {
         inventDataDao.delDoc(numDoc)
     }

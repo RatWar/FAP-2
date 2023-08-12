@@ -36,11 +36,6 @@ class ScanRepository(private val scanDataDao: ScanDataDao) {
     }
 
     @WorkerThread
-    suspend fun deleteCodes(sgtin: String) {
-        scanDataDao.delCodes(sgtin)
-    }
-
-    @WorkerThread
     suspend fun getNumberDocument(): Int {
         return scanDataDao.getNumberDocument()
     }

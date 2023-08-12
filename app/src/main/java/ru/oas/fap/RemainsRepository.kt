@@ -17,11 +17,6 @@ class RemainsRepository(private val remainsDataDao: RemainsDataDao) {
     }
 
     @WorkerThread
-    suspend fun countRemains(): Int {
-        return remainsDataDao.countRemains()
-    }
-
-    @WorkerThread
     suspend fun countAvailable(barcode: String): Int? {
         return remainsDataDao.countAvailable(barcode)
     }
@@ -34,11 +29,6 @@ class RemainsRepository(private val remainsDataDao: RemainsDataDao) {
     @WorkerThread
     suspend fun nameFileRemains(): String {
         return remainsDataDao.nameFileRemains()
-    }
-
-    @WorkerThread
-    suspend fun updateAvailable(id: Long, available: Int) {
-        return remainsDataDao.updateAvailable(id, available)
     }
 
     @WorkerThread

@@ -36,9 +36,6 @@ interface ScanDataDao {
     @Query("DELETE from ScanData where NumDoc = :numDoc and SGTIN = :sgtin")
     suspend fun delSGTIN(numDoc: Int, sgtin: String)
 
-    @Query("DELETE from ScanData where SGTIN = :sgtin")
-    suspend fun delCodes(sgtin: String)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(scanData: ScanData)
 

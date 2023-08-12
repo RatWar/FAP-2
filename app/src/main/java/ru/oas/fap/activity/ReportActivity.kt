@@ -17,7 +17,6 @@ class ReportActivity : AppCompatActivity() {
     private var countUnknown: Int = 0
     private lateinit var prefs: SharedPreferences
     private var sumRemains: Double = 0.0
-//    private val tag = "myLogs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,25 +57,19 @@ class ReportActivity : AppCompatActivity() {
                     countUnknown += 1
                     continue
                 }
-                val buf_part = it.part
-//                Log.d(tag, "buf_part - $buf_part")
-                if (buf_part == 0) {
-                    val buf_price = it.price
-//                    Log.d(tag, "buf_price - $buf_price")
-                    sum += buf_price
-//                    Log.d(tag, "sum - $sum")
+                val bufPart = it.part
+                if (bufPart == 0) {
+                    val bufPrice = it.price
+                    sum += bufPrice
                 } else {
                     remPart = mAllViewModel.countPartRemains(it.sgtin)!!
-//                    Log.d(tag, "remPart - $remPart")
                     when (remPart) {
                         0 -> {
                             remPart = 1
                         }
                     }
                     val buf = (it.part * 1.0 / remPart) * it.price
-//                    Log.d(tag, "buf - $buf")
                     sum += buf
-//                    Log.d(tag, "sum - $sum")
                 }
             }
         }

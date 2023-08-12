@@ -38,7 +38,7 @@ class CodesActivity : AppCompatActivity() {
         mBarcode = intent.getStringExtra("Barcode").toString()
         mNumDoc = intent.getIntExtra("NumDoc", 0)
 
-        mAllViewModel = ViewModelProvider(this).get(AllViewModel::class.java)
+        mAllViewModel = ViewModelProvider(this)[AllViewModel::class.java]
         mAllViewModel.setNumDocAndBarcode(mNumDoc, mBarcode)
         mAllViewModel.mAllCodes.observe(this) { codes ->
             codes?.let { codesAdapter.setCodes(it) }

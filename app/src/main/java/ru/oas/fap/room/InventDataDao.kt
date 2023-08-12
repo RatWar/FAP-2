@@ -21,9 +21,6 @@ interface InventDataDao {
     @Query("SELECT * from InventData order by NumDoc")
     suspend fun getAll(): List<InventData>?
 
-    @Query("SELECT IFNULL(max(NumDoc), '0') + 1 FROM InventData")
-    suspend fun getNumberDocument(): Int
-
     @Query("SELECT SGTIN FROM InventData where NumDoc = :numDoc")
     suspend fun getSGTINfromDocument(numDoc: Int): List<String>
 
@@ -32,12 +29,6 @@ interface InventDataDao {
 
     @Query("DELETE from InventData where id = :id")
     suspend fun delBarcodeId(id: Long)
-
-    @Query("DELETE from InventData where NumDoc = :numDoc and SGTIN = :sgtin")
-    suspend fun delSGTIN(numDoc: Int, sgtin: String)
-
-    @Query("DELETE from InventData where SGTIN = :sgtin")
-    suspend fun delCodes(sgtin: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(inventData: InventData)
