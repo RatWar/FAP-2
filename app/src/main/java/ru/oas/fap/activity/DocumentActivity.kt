@@ -1,10 +1,6 @@
 package ru.oas.fap.activity
 
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.SoundPool
@@ -39,7 +35,6 @@ class DocumentActivity : AppCompatActivity() {
     private var fScan: String? = ""
     private var mDocumentNumber: Int = 0
     private lateinit var mCurrentScan: ScanData
-    private var keycode: Int = 0
     private val tableScan = mutableListOf<String>()
     private lateinit var binding: ActivityDocumentBinding
     private lateinit var errSound: SoundPool
@@ -48,14 +43,6 @@ class DocumentActivity : AppCompatActivity() {
     private var partScan: Int = 0
     private var partAvailable: Int = 0
     private var partTotal: Int = 0
-
-    private val broadCastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(contxt: Context?, intent: Intent?) {
-            when (intent?.action) {
-                "com.xcheng.scanner.action.BARCODE_DECODING_BROADCAST" -> onScan(intent)
-            }
-        }
-    }
 
     private val getBarcode = registerForActivityResult(BarcodeActivityContract()) { result ->
         onScannerResult(result)}
@@ -116,15 +103,6 @@ class DocumentActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (fCamera!!.toInt() == 2) {
-            binding.fabCamera.hide()
-            binding.fabSave.hide()
-            setTriggerStates()
-            openDevice(keycode)
-            val filter = IntentFilter()
-            filter.addAction("com.xcheng.scanner.action.BARCODE_DECODING_BROADCAST")
-            registerReceiver(broadCastReceiver, filter)
-        }
         tableScan.clear()
         tableScan.addAll(mAllViewModel.getSGTINfromDocument(mDocumentNumber))
         setLayoutCount()
@@ -132,10 +110,6 @@ class DocumentActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
-        if (fCamera!!.toInt() == 2) {
-            unregisterReceiver(broadCastReceiver)
-            closeDevice()
-        }
         errSound.pause(soundId)
         super.onPause()
     }
@@ -158,28 +132,6 @@ class DocumentActivity : AppCompatActivity() {
             }
             mSGTIN = mSGTIN.filterNot { it == '\u001D'}
         }
-        partAvailable = checkInNomen(mSGTIN)
-        if (partAvailable == 0) {
-            soundPlay()
-            toast("Данной номенклатуры нет на остатках")
-        } else {
-            if (partAvailable > 1) {
-                partTotal = checkPartNomen(mSGTIN)
-                queryPart()
-            } else {
-                partScan = 1
-                handlerBarcode()
-            }
-        }
-    }
-
-    private fun onScan(intent: Intent?) {
-        intent?.getStringExtra("EXTRA_BARCODE_DECODING_SYMBOLE").toString() // "Data Matrix"
-        mSGTIN = intent?.getStringExtra("EXTRA_BARCODE_DECODING_DATA").toString()
-        if (mSGTIN[0] == '\u001D' || mSGTIN[0] == '\u00E8') {  // для QR-кода убираю 1-й служебный
-            mSGTIN = mSGTIN.substring(1)
-        }
-        mSGTIN = mSGTIN.take(31)
         partAvailable = checkInNomen(mSGTIN)
         if (partAvailable == 0) {
             soundPlay()
@@ -240,41 +192,6 @@ class DocumentActivity : AppCompatActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
-    }
-
-    // Установите статус Trigger buttons, Trigger buttons включены по умолчанию
-    private val actionControlScankey: String = "com.xcheng.scanner.action.ACTION_CONTROL_SCANKEY"
-    private val actionCloseScan = "com.xcheng.scanner.action.CLOSE_SCAN_BROADCAST"
-    private val extraScankeyCode = "extra_scankey_code"
-    private val extraScankeyStatus = "extra_scankey_STATUS"
-    private var triggersKeys =
-        intArrayOf(KeyEvent.KEYCODE_F3, KeyEvent.KEYCODE_CAMERA, KeyEvent.KEYCODE_FOCUS)
-
-    private fun setTriggerStates() {
-        triggersKeys.forEach {
-            val intent = Intent()
-            intent.action = actionControlScankey
-            intent.putExtra(extraScankeyCode, it)
-            intent.putExtra(extraScankeyStatus, true)
-            sendBroadcast(intent)
-        }
-    }
-
-    // Включение Scanner Atol
-    private val actionOpenScan: String = "com.xcheng.scanner.action.OPEN_SCAN_BROADCAST"
-    private val scankey = "scankey"
-    private fun openDevice(keycode: Int) {
-        val intent = Intent()
-        intent.action = actionOpenScan
-        intent.putExtra(scankey, keycode)
-        sendBroadcast(intent)
-    }
-
-    // Отключение Scanner Атол
-    private fun closeDevice() {
-        val intent = Intent()
-        intent.action = actionCloseScan
-        sendBroadcast(intent)
     }
 
     // проверка скана в остатках

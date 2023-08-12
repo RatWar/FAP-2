@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.preference.PreferenceManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -104,7 +103,7 @@ class ListFAPActivity : AppCompatActivity() {
     private fun onLoad(numFAP: String) {
         val t = Thread {
             val ftpClient = FTPClient()
-            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val prefs: SharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
             val server = prefs.getString("et_preference_server", "").toString()
             val user = "faps"
             val pass = "Tw789QwZ"
@@ -218,7 +217,7 @@ class ListFAPActivity : AppCompatActivity() {
     private fun onLoadRemains(numFAP: String) {
         val t = Thread {
             val ftpClient = FTPClient()
-            var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            var prefs: SharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
             val server = prefs.getString("et_preference_server", "").toString()
             val user = "faps"
             val pass = "Tw789QwZ"

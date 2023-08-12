@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -172,18 +171,6 @@ class MainActivity : AppCompatActivity() {
     private fun onInvent() {
         val intent = Intent(this@MainActivity, InventActivity::class.java)
         startActivity(intent)
-    }
-
-    // LeftScan = 27  Scan = 301  RightScan = 80
-    // Esc = 111                  Ent = 66
-    // F1 = 131                   F2 = 132
-    // BS = 67                    ., = 56
-    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == 66) {
-            onDocument()
-            return true
-        }
-        return super.onKeyUp(keyCode, event)
     }
 
 }
