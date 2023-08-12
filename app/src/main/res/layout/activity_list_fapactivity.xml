@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".activity.ListFAPActivity">
+
+    <TextView
+        android:id="@+id/tvDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/descr_FAP"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/edtFAP" />
+
+    <EditText
+        android:id="@+id/edtFAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnFTP"
+        app:layout_constraintTop_toBottomOf="@id/tvDescr"
+        app:layout_constraintBottom_toTopOf="@+id/tvNameFAP"
+        android:ems="4"
+        android:inputType="number"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        tools:ignore="LabelFor"
+        android:importantForAccessibility="no"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btnFTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/edtFAP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescr"
+        app:layout_constraintBottom_toTopOf="@+id/tvNameFAP"
+        android:text="@string/txtFindFAP" />
+
+    <TextView
+        android:id="@+id/tvNameFAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/green2"
+        android:text="@string/inv_NameFAP"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnFTPLoad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtFAP" />
+
+    <Button
+        android:id="@+id/btnFTPLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/inv_LoadRemains"
+        app:layout_constraintBottom_toTopOf="@+id/tvStatusFAP"
+        app:layout_constraintTop_toBottomOf="@id/tvNameFAP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStatusFAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFTPLoad" />
+</androidx.constraintlayout.widget.ConstraintLayout>

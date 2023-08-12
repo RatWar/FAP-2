@@ -1,35 +1,34 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    namespace 'ru.oas.fap'
+
     compileSdk 34
 
     defaultConfig {
-        applicationId "ru.oas.fap"
-        minSdk 24
-        targetSdk 34
+        applicationId 'ru.oas.fap'
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+
+    buildFeatures {
+        viewBinding = true
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    namespace 'ru.oas.fap'
 }
 
 dependencies {
@@ -39,6 +38,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.room:room-common:2.5.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -48,4 +48,12 @@ dependencies {
     implementation "androidx.room:room-ktx:2.5.2"
     annotationProcessor "androidx.room:room-compiler:2.5.2"
     androidTestImplementation "androidx.room:room-testing:2.5.2"
+
+    //    https://github.com/yuriy-budiyev/code-scanner
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'commons-net:commons-net:3.8.0'
+    implementation 'com.linuxense:javadbf:0.4.0'
+
 }

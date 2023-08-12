@@ -1,0 +1,61 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/messages_header">
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true"/>
+
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/scan_entries"
+            app:entryValues="@array/scan_values"
+            app:key="scan"
+            app:title="@string/scan_title"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/messages_ftp">
+
+        <EditTextPreference
+            android:key="et_preference_server"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/ftp_server" />
+        <EditTextPreference
+            android:defaultValue="00000000"
+            android:key="et_preference_login"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/ftp_login" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:key="et_preference_password"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:title="@string/ftp_password" />
+        <EditTextPreference
+            android:defaultValue="nsi/"
+            android:key="et_preference_input"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/ftp_input" />
+        <EditTextPreference
+            android:defaultValue="real/"
+            android:key="et_preference_output"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/ftp_output" />
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

@@ -1,3 +1,55 @@
 <resources>
-    <string name="app_name">FAP</string>
+    <string name="app_name">ТСД_ФАП</string>
+    <string name="action_about">О программе…</string>
+    <string name="action_settings">Настройки</string>
+    <string name="content_image">документ</string>
+    <string name="txCopyr">© Anvarov Rais \n 2023 (Orenburg) \n e-mail: ra7@bk.ru</string>
+    <string name="btClose">Закрыть</string>
+    <string name="transportLayoutText">QR (SGTIN):</string>
+    <string name="matrixLayoutText">EAN-13:</string>
+
+    <!-- Messages Preferences -->
+    <string name="messages_header">Настройки для камеры</string>
+    <string name="reply_title">Камера для сканирования</string>
+    <string name="scan_title">Замена кнопки SCAN</string>
+    <string name="messages_ftp">Настройки для FTP</string>
+    <string name="ftp_server">Адрес сервера</string>
+    <string name="ftp_login">Место деятельности</string>
+    <string name="ftp_password">Пароль</string>
+    <string name="ftp_input">Папка отпущенных кодов</string>
+    <string name="ftp_output">Папка отсканированных кодов</string>
+
+    <!-- Sync Preferences -->
+    <string name="action_load">Загрузить список Номенклатуры</string>
+    <string name="action_save">Сохр.</string>
+    <string name="LoadNomenklature">Загрузка Номенклатуры…</string>
+    <string name="SaveDokuments">Сохранение документов…</string>
+    <string name="DeleteCodes">Удаление штрихкодов…</string>
+    <string name="countNomen">Остатки номенклатур -</string>
+    <string name="add_nomenclature">Add nomenclature</string>
+    <string name="inv_nomenclature">Invent nomenclature</string>
+    <string name="save_dokuments">Save dokuments</string>
+    <string name="camera">Camera</string>
+    <string name="upload_ftp">Upload ftp</string>
+    <string name="txtLoad">Обмен с ФТП...</string>
+    <string name="partNumber">Число</string>
+    <string name="numNumber">Число уп.</string>
+    <string name="numberParts">Количество частей 6 из 10</string>
+    <string name="inv_LoadRemains">Загрузить остатки по ФАПу</string>
+    <string name="inv_SaveInvent">Сохранить инвентаризацию на ftp</string>
+    <string name="inv_NameFAP">Наименование ФАПа</string>
+    <string name="inv_DocInvent">Документ инвентаризации</string>
+    <string name="inv_ReportInv">Отчет инвентаризации</string>
+    <string name="title_activity_fapactivity">FAPActivity</string>
+    <string name="descr_FAP">Ввести цифры (без ведущих 0)\n места деятельности ФАПа</string>
+    <string name="txtFindFAP">Найти ФАП</string>
+    <string name="txtFindFAPandRemains">Найти ФАП и загрузить остатки</string>
+    <string name="txtReport0">Отчет по инвентаризации</string>
+    <string name="txtReport11">Сумма по остатку</string>
+    <string name="txtReport_0">0</string>
+    <string name="btReport1">Закрыть</string>
+    <string name="txtReport21">Сумма по отскан.</string>
+    <string name="txtReport31">Разница в сумме</string>
+    <string name="txtReport41">Кол-во неопределенного</string>
+    <string name="fullNumber">Количество целых</string>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="reply_entries">
+        <item>Основная</item>
+        <item>Фронтальная</item>
+        <item>Атол Smart.Lite</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="scan_entries">
+        <item>Кнопка увеличения громкости</item>
+        <item>Кнопка уменьшения громкости</item>
+    </string-array>
+
+    <string-array name="scan_values">
+        <item>1</item>
+        <item>-1</item>
+    </string-array>
+</resources>
