@@ -1,5 +1,6 @@
 package ru.oas.fap
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class DocListAdapter internal constructor(context: Context): RecyclerView.Adapte
         val docItemView: TextView = itemView.findViewById(R.id.textView)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     internal fun setDocs(docData: List<DocumentData>) {
         this.docs = docData
         notifyDataSetChanged()

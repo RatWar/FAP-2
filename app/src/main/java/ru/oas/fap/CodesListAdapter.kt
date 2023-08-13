@@ -1,5 +1,6 @@
 package ru.oas.fap
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ class CodesListAdapter internal constructor(context: Context): RecyclerView.Adap
         val codesItemDelete: ImageView = itemView.findViewById(R.id.imageView)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     internal fun setCodes(codesData: List<CodesData>) {
         this.codes = codesData
         notifyDataSetChanged()
